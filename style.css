@@ -2,7 +2,7 @@ body {
     font-family: Times New Roman;
     margin: 0;
     padding: 35px;
-    color: #666; 
+    color: #452; 
 }
 h1, h2 {
     color: #535a5c; 
@@ -40,15 +40,15 @@ button {
     font-size: 18px; 
 }
 button:hover {
-    background-color: #00ABE4; /* Darker blue on hover */
+    background-color: #00ABE4; 
 }
 #result {
-    margin-top: 40px; /* Space above results */
-    padding: 15px; /* Padding inside results */
-    background-color: #e9ecef; /* Light gray background for results */
-    border-radius: 8px; /* Rounded corners for results */
-    white-space: pre-wrap; /* Preserves formatting of JSON output */
-    overflow-x: auto; /* Allows horizontal scrolling if needed */
-    max-height: 300px; /* Maximum height for results display */
-    overflow-y: auto; /* Allows vertical scrolling if needed */
+    margin-top: 40px; 
+    padding: 15px; 
+    background-color: #e9ecef; 
+    border-radius: 8px; 
+    white-space: pre-wrap; 
+    overflow-x: auto; 
+    max-height: 300px; 
+    overflow-y: auto;
 }
