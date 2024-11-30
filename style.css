@@ -1,84 +1,63 @@
-// Fonction appelée lorsque le bouton "Upload and Identify" est cliqué
-document.getElementById('uploadBtn').addEventListener('click', function() {
-    const subscriptionKey = document.getElementById('subscriptionKey').value; // Récupère la clé d'abonnement
-    const endpoint = document.getElementById('endpoint').value;               // Récupère l'URL de l'endpoint
-
-    if (!subscriptionKey || !endpoint) {
-        alert("Please provide both the subscription key and the endpoint.");
-        return;
-    }
-
-    const imageInput = document.getElementById('imageInput');
-    const file = imageInput.files[0];
-    
-    if (!file) {
-        alert("Please select an image first.");
-        return;
-    }
-
-    // Afficher l'image dans la prévisualisation
-    previewImage(file);
-
-    const analyzeUrl = `${endpoint}/vision/v3.2/detect`;
-    analyzeImage(file, analyzeUrl, subscriptionKey); // Appelle la fonction d'analyse avec les nouvelles valeurs
-});
-
-// Fonction pour afficher l'image chargée
-function previewImage(file) {
-    const imagePreview = document.getElementById('imagePreview');
-    const reader = new FileReader();
-    reader.onload = function(event) {
-        imagePreview.src = event.target.result; // Met à jour l'URL de l'image
-        imagePreview.style.display = 'block';   // Affiche l'image
-    };
-    reader.readAsDataURL(file);  // Lire l'image en tant que Data URL
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9; /* Light gray background */
+    margin: 0;
+    padding: 20px;
+    color: #333; /* Dark text color */
 }
 
-// Fonction pour analyser l'image en envoyant le fichier directement à l'API Azure
-function analyzeImage(file, analyzeUrl, subscriptionKey) {
-    const reader = new FileReader();
-    reader.onloadend = function() {
-        const arrayBuffer = reader.result;
-
-        // Envoie les données binaires à l'API Azure
-        fetch(analyzeUrl, {
-            method: 'POST',
-            headers: {
-                'Ocp-Apim-Subscription-Key': subscriptionKey,
-                'Content-Type': 'application/octet-stream'
-            },
-            body: arrayBuffer
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log("Azure Response Data:", data);
-            display_output(data); // Affiche les résultats
-        })
-        .catch(error => {
-            console.error('Error in analyzing the image:', error);
-            display_error(error.message);
-        });
-    };
-    reader.readAsArrayBuffer(file); // Lire le fichier en tant qu'ArrayBuffer
+h1, h2 {
+    color: #4a4a4a; /* Dark gray headings */
+    text-align: center; /* Center align headings */
 }
 
-// Fonction pour afficher les résultats
-function display_output(data) {
-    const resultDiv = document.getElementById('result');
-    resultDiv.textContent = ''; // Réinitialise le contenu
-
-    if (data.objects && data.objects.length > 0) {
-        data.objects.forEach((obj, index) => {
-            const objectText = `Object ${index + 1}: ${obj.object} (Confidence: ${(obj.confidence * 100).toFixed(2)}%)\n`;
-            resultDiv.textContent += objectText;
-        });
-    } else {
-        resultDiv.textContent = "No objects detected.";
-    }
+.container {
+    max-width: 600px; /* Maximum width for the container */
+    margin: 0 auto; /* Center the container */
+    padding: 20px; /* Padding around the content */
+    background: #fff; /* White background for the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
-// Fonction pour afficher les erreurs
-function display_error(message) {
-    const resultDiv = document.getElementById('result');
-    resultDiv.textContent = `Error: ${message}`;
+label {
+    margin-top: 10px; /* Space above labels */
+    display: block; /* Labels take full width */
+    font-weight: bold; /* Bold text for labels */
+}
+
+input[type="text"],
+input[type="file"] {
+    width: 100%; /* Full width input fields */
+    padding: 10px; /* Padding inside input fields */
+    margin: 10px 0; /* Space above and below input fields */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    box-sizing: border-box; /* Includes padding in width */
+}
+
+button {
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside button */
+    background-color: #28a745; /* Green background for button */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Larger font for button text */
+}
+
+button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+#result {
+    margin-top: 20px; /* Space above results */
+    padding: 10px; /* Padding inside results */
+    background-color: #e9ecef; /* Light gray background for results */
+    border-radius: 4px; /* Rounded corners for results */
+    white-space: pre-wrap; /* Preserves formatting of JSON output */
+    overflow-x: auto; /* Allows horizontal scrolling if needed */
+    max-height: 300px; /* Maximum height for results display */
+    overflow-y: auto; /* Allows vertical scrolling if needed */
 }
