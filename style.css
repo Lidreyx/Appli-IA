@@ -5,27 +5,23 @@ body {
     padding: 35px;
     color: #333; /* Dark text color */
 }
-
 h1, h2 {
     color: #4a4a4a; /* Dark gray headings */
     text-align: center; /* Center align headings */
 }
-
 .container {
     max-width: 700px; /* Maximum width for the container */
     margin: 0 auto; /* Center the container */
     padding: 35px; /* Padding around the content */
-    background: #fff; /* White background for the container */
+    background: #FFFFFF; /* White background for the container */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
-
 label {
     margin-top: 15px; /* Space above labels */
     display: block; /* Labels take full width */
     font-weight: bold; /* Bold text for labels */
 }
-
 input[type="text"],
 input[type="file"] {
     width: 100%; /* Full width input fields */
@@ -35,22 +31,19 @@ input[type="file"] {
     border-radius: 4px; /* Rounded corners */
     box-sizing: border-box; /* Includes padding in width */
 }
-
 button {
     width: 100%; /* Full width button */
     padding: 12px; /* Padding inside button */
-    background-color: #28a745; /* Green background for button */
+    background-color: #E9F1FA; /* Green background for button */
     color: white; /* White text color */
     border: none; /* No border */
     border-radius: 5px; /* Rounded corners for button */
     cursor: pointer; /* Pointer cursor on hover */
     font-size: 18px; /* Larger font for button text */
 }
-
 button:hover {
-    background-color: #218838; /* Darker green on hover */
+    background-color: #00ABE4; /* Darker blue on hover */
 }
-
 #result {
     margin-top: 40px; /* Space above results */
     padding: 15px; /* Padding inside results */
