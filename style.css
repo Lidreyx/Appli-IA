@@ -1,6 +1,5 @@
 body {
     font-family: Times New Roman;
-    background-color: #f4f4f9; /* Light gray background */
     margin: 0;
     padding: 35px;
     color: #333; /* Dark text color */
@@ -10,17 +9,17 @@ h1, h2 {
     text-align: center; /* Center align headings */
 }
 .container {
-    max-width: 700px; /* Maximum width for the container */
-    margin: 0 auto; /* Center the container */
-    padding: 35px; /* Padding around the content */
-    background: #FFFFFF; /* White background for the container */
-    border-radius: 8px; /* Rounded corners */
+    max-width: 700px; 
+    margin: 0 auto; 
+    padding: 35px; 
+    background: #FFFFFF; 
+    border-radius: 8px; 
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 label {
-    margin-top: 15px; /* Space above labels */
-    display: block; /* Labels take full width */
-    font-weight: bold; /* Bold text for labels */
+    margin-top: 15px; 
+    display: block; 
+    font-weight: bold; 
 }
 input[type="text"],
 input[type="file"] {
@@ -34,12 +33,12 @@ input[type="file"] {
 button {
     width: 100%; /* Full width button */
     padding: 12px; /* Padding inside button */
-    background-color: #E9F1FA; /* Green background for button */
-    color: white; /* White text color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners for button */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 18px; /* Larger font for button text */
+    background-color: #4242f5; 
+    color: white; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    font-size: 18px; 
 }
 button:hover {
     background-color: #00ABE4; /* Darker blue on hover */
