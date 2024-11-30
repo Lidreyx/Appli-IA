@@ -19,5 +19,8 @@ remplissez les champs requis
 terminez la création avec **Review + create**
 une fois la review fini cliquez sur **create**
 
+Maintenant allez sur [https://portal.vision.cognitive.azure.com?azure-portal=true](https://portal.vision.cognitive.azure.com?azure-portal=true)
+connectez vous avec le compte sous lequel vous avez créé votre ressource
+
 
 
