@@ -15,3 +15,5 @@ dans androidstudio sélectionnez votre téléphone dans le Device Manager.
 une fois votre appareil sélectionnez lancez l'application.
 
 Une fois dans l'application il vous suffit de cliquer sur le bouton pour prendre une photo 
+
+une fois la photo prise l'application nous dira quel objet elle a reconnu
