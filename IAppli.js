@@ -5,17 +5,17 @@ document.getElementById('uploadBtn').addEventListener('click', function() {
         alert("Veuillez renseigner à la fois votre API et l'endpoint.");
         return;
     }
-    
+
     const imageInput = document.getElementById('imageInput');
     const file = imageInput.files[0];
-    
+
     if (!file) {
         alert("Veuillez choisir une image.");
         return;
     }
-    
+
     AffichageImage(file);     // Afficher l'image dans la prévisualisation
-    const analyseUrl = `${endpoint}/vision/v3.2/detect`;
+    const analyseUrl =`${endpoint}/vision/v3.2/detect`;
     analyzeImage(file, analyseUrl, subscriptionKey); // Pour appeler la fonction d'analyse
 });
 
@@ -28,12 +28,11 @@ function AffichageImage(file) {
     };
     reader.readAsDataURL(file);  // Lit l'image comme une Data URL
 }
-
 function analyzeImage(file, analyseUrl, subscriptionKey) {   // Fonction pour analyser l'image en l'envoyant à l'API Azure
     const reader = new FileReader();
     reader.onloadend = function() {
         const arrayBuffer = reader.result;
-        
+
         fetch(analyseUrl, {     // Envoie les données à l'API Azure
             method: 'POST',
             headers: {
@@ -58,7 +57,7 @@ function analyzeImage(file, analyseUrl, subscriptionKey) {   // Fonction pour an
 function display_output(data) {  // Sert à afficher les résultats
     const resultDiv = document.getElementById('result');
     resultDiv.textContent = '';
-    
+
     if (data.objects && data.objects.length > 0) {
         data.objects.forEach((obj, index) => {
             const objectText = `Object ${index + 1}: ${obj.object} (Confidence: ${(obj.confidence * 100).toFixed(2)}%)\n`;
@@ -71,5 +70,5 @@ function display_output(data) {  // Sert à afficher les résultats
 
 function display_error(message) {   // Fonction qui affiche une erreur
     const resultDiv = document.getElementById('result');
-    resultDiv.textContent = `Erreur: ${message}`;
+    resultDiv.textContent = `Error: ${message}`;
 }
