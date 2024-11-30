@@ -1,6 +1,12 @@
 # Appli-IA
 application utilisant Azure IA pour reconnaître les images
 
+# Réglage :
+
+entrez votre clé API pour Azure AI Services à la ligne 156
+Entrez votre votre endpoint à la ligne 8 de retrofit client.java
+
+
 
 # How to use :
 télécharger l'application 
