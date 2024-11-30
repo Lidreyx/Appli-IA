@@ -1,39 +1,47 @@
+// Fonction appelée lorsque le bouton "Upload and Identify" est cliqué
 document.getElementById('uploadBtn').addEventListener('click', function() {
-    const subscriptionKey = document.getElementById('subscriptionKey').value; // Permet de récupérer la clé API
-    const endpoint = document.getElementById('endpoint').value;               // Permet de récupérer le lien du Endpoint
+    const subscriptionKey = document.getElementById('subscriptionKey').value; // Récupère la clé d'abonnement
+    const endpoint = document.getElementById('endpoint').value;               // Récupère l'URL de l'endpoint
+
     if (!subscriptionKey || !endpoint) {
-        alert("Veuillez renseigner à la fois votre API et l'endpoint.");
+        alert("Please provide both the subscription key and the endpoint.");
         return;
     }
 
     const imageInput = document.getElementById('imageInput');
     const file = imageInput.files[0];
-
+    
     if (!file) {
-        alert("Veuillez choisir une image.");
+        alert("Please select an image first.");
         return;
     }
 
-    AffichageImage(file);     // Afficher l'image dans la prévisualisation
-    const analyseUrl =`${endpoint}/vision/v3.2/detect`;
-    analyzeImage(file, analyseUrl, subscriptionKey); // Pour appeler la fonction d'analyse
+    // Afficher l'image dans la prévisualisation
+    previewImage(file);
+
+    const analyzeUrl = `${endpoint}/vision/v3.2/detect`;
+    analyzeImage(file, analyzeUrl, subscriptionKey); // Appelle la fonction d'analyse avec les nouvelles valeurs
 });
 
-function AffichageImage(file) {
-    const Imageprev = document.getElementById('Imageprev');
+// Fonction pour afficher l'image chargée
+function previewImage(file) {
+    const imagePreview = document.getElementById('imagePreview');
     const reader = new FileReader();
     reader.onload = function(event) {
-        Imageprev.src = event.target.result; // Change l'url de l'image
-        Imageprev.style.display = 'block';   // Affiche l'image
+        imagePreview.src = event.target.result; // Met à jour l'URL de l'image
+        imagePreview.style.display = 'block';   // Affiche l'image
     };
-    reader.readAsDataURL(file);  // Lit l'image comme une Data URL
+    reader.readAsDataURL(file);  // Lire l'image en tant que Data URL
 }
-function analyzeImage(file, analyseUrl, subscriptionKey) {   // Fonction pour analyser l'image en l'envoyant à l'API Azure
+
+// Fonction pour analyser l'image en envoyant le fichier directement à l'API Azure
+function analyzeImage(file, analyzeUrl, subscriptionKey) {
     const reader = new FileReader();
     reader.onloadend = function() {
         const arrayBuffer = reader.result;
 
-        fetch(analyseUrl, {     // Envoie les données à l'API Azure
+        // Envoie les données binaires à l'API Azure
+        fetch(analyzeUrl, {
             method: 'POST',
             headers: {
                 'Ocp-Apim-Subscription-Key': subscriptionKey,
@@ -47,16 +55,17 @@ function analyzeImage(file, analyseUrl, subscriptionKey) {   // Fonction pour an
             display_output(data); // Affiche les résultats
         })
         .catch(error => {
-            console.error("Erreur lors de l'analyse de l'image:", error);
+            console.error('Error in analyzing the image:', error);
             display_error(error.message);
         });
     };
-    reader.readAsArrayBuffer(file);
+    reader.readAsArrayBuffer(file); // Lire le fichier en tant qu'ArrayBuffer
 }
 
-function display_output(data) {  // Sert à afficher les résultats
+// Fonction pour afficher les résultats
+function display_output(data) {
     const resultDiv = document.getElementById('result');
-    resultDiv.textContent = '';
+    resultDiv.textContent = ''; // Réinitialise le contenu
 
     if (data.objects && data.objects.length > 0) {
         data.objects.forEach((obj, index) => {
@@ -64,11 +73,12 @@ function display_output(data) {  // Sert à afficher les résultats
             resultDiv.textContent += objectText;
         });
     } else {
-        resultDiv.textContent = "Pas d'objet détecté.";
+        resultDiv.textContent = "No objects detected.";
     }
 }
 
-function display_error(message) {   // Fonction qui affiche une erreur
+// Fonction pour afficher les erreurs
+function display_error(message) {
     const resultDiv = document.getElementById('result');
     resultDiv.textContent = `Error: ${message}`;
 }
