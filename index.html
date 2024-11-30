@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Recognition App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Object Recognition Application</h1>
+
+    <!-- Azure Credentials Section -->
+    <h2>Azure Credentials</h2>
+    <label for="subscriptionKey">Subscription Key:</label>
+    <input type="text" id="subscriptionKey" placeholder="Enter your subscription key"><br>
+    <label for="endpoint">Endpoint:</label>
+    <input type="text" id="endpoint" placeholder="Enter your endpoint"><br>
+
+    <!-- File Upload Section -->
+    <input type="file" id="imageInput" accept="image/*">
+    <button id="uploadBtn">Upload and Identify</button>
+
+    <!-- New Image Preview Section  -->
+    <img id="imagePreview" src="#" alt="Your image will appear here" style="max-width: 300px; display:none; margin-top: 20px;"/>
+
+    <div id="result"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
