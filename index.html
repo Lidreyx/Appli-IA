@@ -3,28 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object Recognition App</title>
+    <title>site web de reconnaissance d'objets</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Application de reconnaissance d'objet</h1>
-
-    <!-- Azure Credentials Section -->
+    <h1>Reconaissance d'objets via Azure AI</h1>
     <h2>Identifiant Azure</h2>
     <label for="subscriptionKey">API key</label>
     <input type="text" id="subscriptionKey" placeholder="Entrez votre clé API"><br>
     <label for="endpoint">Endpoint:</label>
     <input type="text" id="endpoint" placeholder="Entrez votre lien Endpoint"><br>
-
-    <!-- File Upload Section -->
     <input type="file" id="imageInput" accept="image/*">
     <button id="uploadBtn">Analyser l'image</button>
-
-    <!-- New Image Preview Section  -->
     <img id="imagePreview" src="#" alt="Votre image apparaît ici." style="max-width: 300px; display:none; margin-top: 20px;"/>
-
     <div id="result"></div>
-
     <script src="app.js"></script>
 </body>
 </html>
